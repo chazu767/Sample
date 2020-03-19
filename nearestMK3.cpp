@@ -9,10 +9,10 @@ float euclid(int x0, int y0, int x1, int y1) {
 }
 
 int main(void) {
-	int i,j,tmp;
+	int i, j, tmp;
 	//配列に格納する変数に関してはconst intの方が良い??
 	const int num = 100;
-	int st[num],ans[num];
+	int st[num], ans[num];
 	//毎回乱数を異なる値にする．
 	//rand((unsigned int)time(NULL));
 
@@ -20,16 +20,16 @@ int main(void) {
 	//乱数の生成100個
 	printf("乱数の生成\n");
 	for (i = 0; i < 100; i++) {
-			st[i] = rand() % 100 + 1;
-			ans[i] = st[i];
-			printf("%d,",st[i]);		
+		st[i] = rand() % 100 + 1;
+		ans[i] = st[i];
+		printf("%d,", st[i]);
 	}
 	printf("\n");
-	
+
 	//バブルソート昇順
 	printf("ここからソート昇順\n");
 	for (i = 0; i < num; i++) {
-		for (j =i+1; j < num; j++) {
+		for (j = i + 1; j < num; j++) {
 			if (ans[i] > ans[j]) {
 				tmp = ans[i];
 				ans[i] = ans[j];
@@ -39,9 +39,9 @@ int main(void) {
 	}
 
 	//結果(昇順)
-	for (i = 0; i < 100; i+=10) {
+	for (i = 0; i < 100; i += 10) {
 		for (j = 0; j < 10; j++) {
-			printf("%d,", ans[i+j]);
+			printf("%d,", ans[i + j]);
 		}
 		printf("\n");
 	}
@@ -69,7 +69,7 @@ int main(void) {
 	printf("\n");
 
 	//------------------------------------------------------------------------------
-	
+
 	/*
 	//最近棒法
 
@@ -105,7 +105,7 @@ int main(void) {
 		decmin = 1000.0;
 		//IDの表示
 		printf("ID[%d]---",dec);
-		
+
 		//最短距離の計算
 		printf("最短距離");
 		for (i = 0; i < id; i++) {
@@ -183,7 +183,7 @@ int main(void) {
 		//毎回更新する必要のある値(評価値の更新する)
 		decmin = 1000.0;
 		//IDの表示
-		printf("ID[%d]---GROUPID[%d] ", dec,tag[dec]);
+		printf("ID[%d]---GROUPID[%d] ", dec, tag[dec]);
 
 		//最短距離の計算
 		printf("最短距離");
@@ -213,18 +213,22 @@ int main(void) {
 
 			//cogカウントも1にする
 			cog = 0;
+			//cogカウントはここでは0でないといけない．↓にあるcog++;でカウントが1になるため．
+			//つまりgroupid[0から1]に変更された時にcog=0.cntx,y[1]の時に分母のcogが1になる．
+			//最低でも計算可能になる.
+
 		}
 
 		tag[j] = groupid;
 
 		//x,yの値を足していく
-		cntx[groupid]+= p[j][0];
+		cntx[groupid] += p[j][0];
 		cnty[groupid] += p[j][1];
 
 		//重心の平均のカウント変数繰り上げ
 		cog++;
 
-		printf("GROUPIDの合計値[%d]x:[%d]y:[%d]",groupid,cntx[groupid],cnty[groupid]);
+		printf("GROUPIDの合計値[%d]x:[%d]y:[%d]", groupid, cntx[groupid], cnty[groupid]);
 
 
 		//decはループを抜てけてから更新する.
@@ -234,8 +238,8 @@ int main(void) {
 	}
 
 	//重心の表示
-	for (i = 0; i < groupid; i ++) {
-		printf("重心平均\nID[%d]\nx[%d]\ny[%d]\n",i,avex[i],avey[i]);
+	for (i = 0; i < groupid; i++) {
+		printf("重心平均\nID[%d]\nx[%d]\ny[%d]\n", i, avex[i], avey[i]);
 	}
 
 	/*GIDの取得簡単(Excel用)
@@ -243,13 +247,13 @@ int main(void) {
 		printf("%d,%d\n",avex[i],avey[i]);
 	}
 	*/
-	
+
 
 	printf("\n");
 
 
 	//-----------------------------------------------------------------------------------------------
-	
+
 
 	//k-means(k=3)まずは10個のデータから
 
@@ -257,14 +261,14 @@ int main(void) {
 
 
 	//変数の生成
-	
-	const int kid=10, kxy=2;
+
+	const int kid = 10, kxy = 2;
 	int kst[kid][kxy];
 
 	for (i = 0; i < kid; i++) {
 		for (j = 0; j < kxy; j++) {
 			kst[i][j] = rand() % 10;
-			printf("%d,",kst[i][j]);
+			printf("%d,", kst[i][j]);
 		}
 		printf("\n");
 	}
